@@ -25,6 +25,7 @@ public class Stamps {
         this.category_D = 0;
         this.category_E = 0;
     }
+
     public Stamps(int category_A, 
     int category_B, 
     int category_C, 
@@ -36,43 +37,55 @@ public class Stamps {
         this.category_D = category_D;
         this.category_E = category_E;
     }
+
     public Stamps(Stamps original) {
-        this(original.category_A, 
-        original.category_B, 
-        original.category_C, 
-        original.category_D, 
-        original.category_E);
+        this.category_A = original.category_A;
+        this.category_B = original.category_B;
+        this.category_C = original.category_C;
+        this.category_D = original.category_D;
+        this.category_E = original.category_E;
     }
+
     public int getCategoryA() {
         return category_A;
     }
+
     public int getCategoryB() {
         return category_B;
     }
+
     public int getCategoryC() {
         return category_C;
     }
+
     public int getCategoryD() {
         return category_D;
     }
+
     public int getCategoryE() {
         return category_E;
     }
+
     public void setCategoryA(int categoryA) {
         this.category_A = categoryA;
     }
+
     public void setCategoryB(int categoryB) {
         this.category_B = categoryB;
     }
+
     public void setCategoryC(int categoryC) {
         this.category_C = categoryC;
     }
+
     public void setCategoryD(int categoryD) {
         this.category_D = categoryD;
     }
+
     public void setCategoryE(int categoryE) {
         this.category_E = categoryE;
     }
+
     public void addStamps(int increaseCategoryA, 
     int increaseCategoryB, 
     int increaseCategoryC, 
@@ -92,6 +105,7 @@ public class Stamps {
         (this.category_D * CATEGORY_D) + 
         (this.category_E * CATEGORY_E));
     }
+
     @Override
     public String toString() {
         return "Category A: " + this.category_A + "\n" +

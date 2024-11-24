@@ -12,8 +12,6 @@ shipment stamps and yearly prepaid subscription.
 public class Main {
 
 	public static void main(String[] args) {
-		Stamps stamps = new Stamps();
-
 	}
 
 }
