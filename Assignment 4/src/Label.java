@@ -29,6 +29,9 @@ public class Label {
     }
 
     public Label(Label other) {
+        if (other == null) {
+            System.exit(0);
+        }
         this.type = other.type;
         this.iD = other.iD;
         this.day = other.day;
