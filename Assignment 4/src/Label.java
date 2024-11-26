@@ -87,8 +87,8 @@ public class Label {
         }
         Label other = (Label) obj;
         return this.type.equals(other.type) &&
-               this.iD == other.iD &&
-               this.day == other.day &&
-               this.month == other.month;
+            this.iD == other.iD &&
+            this.day == other.day &&
+            this.month == other.month;
     }
 }

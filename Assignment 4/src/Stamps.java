@@ -125,9 +125,9 @@ public class Stamps {
         }
         Stamps other = (Stamps) obj;
         return this.category_A == other.category_A &&
-               this.category_B == other.category_B &&
-               this.category_C == other.category_C &&
-               this.category_D == other.category_D &&
-               this.category_E == other.category_E;
+            this.category_B == other.category_B &&
+            this.category_C == other.category_C &&
+            this.category_D == other.category_D &&
+            this.category_E == other.category_E;
     }
 }
