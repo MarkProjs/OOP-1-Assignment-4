@@ -1,3 +1,9 @@
+//----------------------------------------------------------------
+// Assignment 4
+// Written by: Mark Benedict Agluba, 40294956
+// For COMP 248 Section S - Fall 2024
+//----------------------------------------------------------------
+
 public class Registry {
     private Stamps stamps;
     private Label[] labels;

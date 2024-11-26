@@ -9,8 +9,10 @@ The program is a simulation the registry of any department/ficility of 6 univers
 shipment stamps and yearly prepaid subscription.
 */
 
-public class Main {
+import java.util.Scanner;
 
-	public static void main(String[] args) {
-	}
+public class MissDemo {
+    public static void main(String[] args) {
+        
+    }
 }
