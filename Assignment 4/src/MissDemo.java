@@ -136,7 +136,7 @@ public class MissDemo {
         boolean isValid = false;
         while (!isValid) {
             try {
-                System.out.print("Which Registry you want to see the content of? (Enter number 0 to 4): ");
+                System.out.print("Which Registry you want to see the content of? (Enter number 1 to 5): ");
                 int registryIndex = input.nextInt();
                 if (registryIndex < 0 || registryIndex > 5) {
                     System.out.print("Sorry but there is no Registry number "+ registryIndex + ". Nice try though.\n" 
@@ -189,7 +189,41 @@ public class MissDemo {
             }
         }
     }
-    private static void addPrepaidLabel(Scanner input) {}
+
+    private static void addPrepaidLabel(Scanner input) {
+        boolean isValid = false;
+        while (!isValid) {
+            try {
+                System.out.println("Which Registry do you want to add a Label to? (Enter number 1 to 5): ");
+                int registryIndex = input.nextInt();
+                if (registryIndex < 0 || registryIndex > 5) {
+                    System.out.print("Sorry but there is no Registry number "+ registryIndex + ". Nice try though.\n" 
+                    +"--> Try again: (Enter number 1 to 5): ");
+                    isValid = false;
+                } else {
+                    System.out.print("Please enter the following information so that we may complete the Label -\n"
+                    + "-->\tType of Label (Confidential, Small, Oversize, Express, Standard, Fragile): ");
+                    input.nextLine();
+                    String labelType = input.nextLine();
+                    System.out.print("-->\tId of the prepaid label possessor: ");
+                    int prepaidLabelId = input.nextInt();
+                    input.nextLine();
+                    System.out.print("-->\tExpiry day number and month (seperate by a space): ");
+                    String expiryDate = input.nextLine();
+                    String[] date = expiryDate.split(" ");
+                    int newLabelLength = registries[registryIndex - 1].addLabel(new Label(labelType, prepaidLabelId, 
+                    Integer.parseInt(date[0]), Integer.parseInt(date[1])));
+                    System.out.println("You have add");
+                    System.out.println(" The total labels for registry " + registryIndex + " is now: " + newLabelLength);
+                    isValid = true;
+                }
+            } catch (Exception e) {
+                input.nextLine();
+                System.out.println("BRO IS PERSISTENT ON CRASHING THE PROGRAM!\nCHOOSE BETWEEN THE NUMBERS!\n");
+                isValid = false;
+            }
+        }
+    }
     private static void removePrepaidLabel(Scanner input) {}
     private static void updateExpiryDate(Scanner input) {}
     private static void addStamps(Scanner input) {}
