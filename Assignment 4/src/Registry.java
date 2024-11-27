@@ -13,32 +13,39 @@ public class Registry {
         this.labels = new Label[0];
     }
 
-    public Registry(Stamps stamps, Label[] labels) {
-        this.stamps = stamps;
-        if (labels != null) {
-            for( int i = 0 ; i < labels.length ; i++) {
-                this.labels[i] = new Label(labels[i]);
-            }
-        } else {
+    public Registry(Stamps stamps, Label[] otherLabels) {
+        if (otherLabels == null) {
+            this.stamps = stamps;
             this.labels = null;
+        } else {
+            this.stamps = stamps;
+            this.labels = new Label[otherLabels.length];
+            for( int i = 0 ; i < otherLabels.length; i++) {
+                this.labels[i] = new Label(otherLabels[i]);
+            }
         }
-    }
 
+    }
+    //Comapare the value of the stamps
     public boolean compareValueStamps(Registry other) {
         return this.stamps.StampsTotal() == other.stamps.StampsTotal();
     }
+    //Compare the amount of stamps
     public boolean compareStamps(Registry other) {
         return this.stamps.equals(other.stamps);
     }
 
+    //Return the total amount of stamps
     public int shipmentStamps() {
         return this.stamps.StampsTotal();
     }
 
+    //Return the number of labels
     public int numberOfLabels() {
         return this.labels.length;
     }
 
+    //Add a new label
     public int addLabel(Label newLabel) {
         if (newLabel == null) {
             return this.labels.length; // Do nothing if the label is null
@@ -53,6 +60,7 @@ public class Registry {
         return this.labels.length;
     }
 
+    //Remove a label
     public boolean removeLabel(Label labelToRemove) {
         if (this.labels == null || this.labels.length == 0 || labelToRemove == null) {
             return false; // No labels to remove or invalid input
@@ -68,7 +76,6 @@ public class Registry {
         if (indexofLabelToRemove == -1) {
             return false; // Label not found
         }
-
         Label[] updatedLabels = new Label[this.labels.length - 1];
         for (int i = 0, j = 0; i < this.labels.length; i++) {
             if (i != indexofLabelToRemove) {
@@ -79,6 +86,7 @@ public class Registry {
         return true;
     }
 
+    //Update the expiry date
     public void updateExpiryDate(Label labelToUpdate, int newDay, int newMonth) {
         for (int i = 0; i < this.labels.length; i++) {
             if (this.labels[i].equals(labelToUpdate)) {
@@ -89,11 +97,11 @@ public class Registry {
         }
     }
 
+    //Add stamps
     public int addShipmentStamps(int categoryA, int categoryB, int categoryC, int categoryD, int categoryE) {
         this.stamps.addStamps(categoryA, categoryB, categoryC, categoryD, categoryE);
         return this.stamps.StampsTotal();
     }
-
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -109,25 +117,26 @@ public class Registry {
 
     @Override
     public String toString() {
-        String registry = "";
-        registry += "Stamps: " + this.stamps + "\n";
+        String registry = stampsBreakdown();
+        registry += "Stamps: " +"\n"+this.stamps + "\n";
         registry += "Labels: " + "\n";
-        for (int i = 0; i < this.labels.length; i++) {
-            if(this.labels[i] == null) {
-                registry += "No prepaid labels" + "\n";
-            } else {
+        if (this.labels == null) {
+            registry += "No Labels" + "\n";
+        }else {
+            for (int i = 0; i < this.labels.length; i++) {
                 registry += this.labels[i] + "\n";
             }
         }
         return registry;
     }
 
+    //Breakdown of stamps
     public String stampsBreakdown() {
-        return this.stamps.getCategoryA() + " x $2 + " + 
-        this.stamps.getCategoryB() + " x $5 + " + 
-        this.stamps.getCategoryC() + " x $10 + " + 
-        this.stamps.getCategoryD() + " x $15 + " + 
-        this.stamps.getCategoryE() + " x $20";
+        return Integer.toString(this.stamps.getCategoryA()) + " x $2 + " + 
+        Integer.toString(this.stamps.getCategoryB()) + " x $5 + " + 
+        Integer.toString(this.stamps.getCategoryC()) + " x $10 + " + 
+        Integer.toString(this.stamps.getCategoryD()) + " x $15 + " + 
+        Integer.toString(this.stamps.getCategoryE()) + " x $20" + "\n";
     }
 
 }

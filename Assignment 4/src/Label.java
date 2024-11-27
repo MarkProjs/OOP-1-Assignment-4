@@ -35,9 +35,6 @@ public class Label {
     }
 
     public Label(Label other) {
-        if (other == null) {
-            System.exit(0);
-        }
         this.type = other.type;
         this.iD = other.iD;
         this.day = other.day;
@@ -75,14 +72,12 @@ public class Label {
             this.month = month;
         }
     }
-
     @Override
     public String toString() {
         return "Type: " + this.type + "\n" +
         "ID: " + this.iD + "\n" +
         "Expiry date: " + String.format("%02d", this.day)+"/"+String.format("%02d", this.month);
     }
-
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {

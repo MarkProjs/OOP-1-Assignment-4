@@ -105,7 +105,6 @@ public class Stamps {
         (this.category_D * CATEGORY_D) + 
         (this.category_E * CATEGORY_E));
     }
-
     @Override
     public String toString() {
         return "Category A: " + this.category_A + "\n" +
@@ -114,7 +113,6 @@ public class Stamps {
         "Category D: " + this.category_D + "\n" +
         "Category E: " + this.category_E + "\n";
     }
-
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
