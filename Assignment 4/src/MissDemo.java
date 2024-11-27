@@ -19,7 +19,7 @@ public class MissDemo {
 
         //initialize registries
         initializeRegistries();
-        System.out.println(registries[3]);
+        System.out.println(registries[3].equals(registries[4]));
 
         //welcoming message
         System.out.println("Welcome to Montreal InterCampuses Shipping Shipping Service(MISS) Application!\n");
@@ -166,7 +166,19 @@ public class MissDemo {
             }
         }
     }
-    private static void displayRegistriesWithSameNumberOfStamps() {}
+
+    private static void displayRegistriesWithSameNumberOfStamps() {
+        System.out.println("List  of Registries with the same Stamps categories: \n");
+        for (int i = 0 ; i < registries.length - 1; i++) {
+            for (int j = i + 1; j < registries.length; j++) {
+                if (registries[i].equals(registries[j])) {
+                    System.out.println("\t\tRegistries " + (i + 1) + " and " + (j + 1) + " both have "+
+                    registries[i].stampsBreakdown() + "\n");
+
+                }
+            }
+        }
+    }
     private static void displayRegistriesWithSameAmountAndNumberOfLabels() {}
     private static void addPrepaidLabel(Scanner input) {}
     private static void removePrepaidLabel(Scanner input) {}

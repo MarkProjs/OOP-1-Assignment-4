@@ -111,8 +111,12 @@ public class Registry {
             return false;
         }
         Registry other = (Registry) obj;
-        return this.stamps.StampsTotal() == other.stamps.StampsTotal() &&
+        if (this.labels == null && other.labels == null) {
+            return true;
+        } else {
+            return this.stamps.StampsTotal() == other.stamps.StampsTotal() &&
             this.labels.length == other.labels.length;
+        }
     }
 
     @Override
