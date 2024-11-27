@@ -16,7 +16,7 @@ public class Registry {
     public Registry(Stamps stamps, Label[] otherLabels) {
         if (otherLabels == null) {
             this.stamps = stamps;
-            this.labels = null;
+            this.labels = new Label[0];
         } else {
             this.stamps = stamps;
             this.labels = new Label[otherLabels.length];
@@ -62,7 +62,7 @@ public class Registry {
 
     //Remove a label
     public boolean removeLabel(Label labelToRemove) {
-        if (this.labels == null || this.labels.length == 0 || labelToRemove == null) {
+        if (this.labels.length == 0 || labelToRemove == null) {
             return false; // No labels to remove or invalid input
         }
 
@@ -111,7 +111,7 @@ public class Registry {
             return false;
         }
         Registry other = (Registry) obj;
-        if (this.labels == null && other.labels == null) {
+        if (this.labels.length == 0 && other.labels.length == 0) {
             return true;
         } else {
             return this.stamps.StampsTotal() == other.stamps.StampsTotal() &&
@@ -124,7 +124,7 @@ public class Registry {
         String registry = stampsBreakdown();
         registry += "Stamps: " +"\n"+this.stamps + "\n";
         registry += "Labels: " + "\n";
-        if (this.labels == null) {
+        if (this.labels.length == 0) {
             registry += "No Labels" + "\n";
         }else {
             for (int i = 0; i < this.labels.length; i++) {

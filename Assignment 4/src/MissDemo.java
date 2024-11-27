@@ -19,7 +19,7 @@ public class MissDemo {
 
         //initialize registries
         initializeRegistries();
-        System.out.println(registries[3].equals(registries[4]));
+        System.out.println(registries[3].numberOfLabels() == registries[4].numberOfLabels());
 
         //welcoming message
         System.out.println("Welcome to Montreal InterCampuses Shipping Shipping Service(MISS) Application!\n");
@@ -179,7 +179,16 @@ public class MissDemo {
             }
         }
     }
-    private static void displayRegistriesWithSameAmountAndNumberOfLabels() {}
+    private static void displayRegistriesWithSameAmountAndNumberOfLabels() {
+        System.out.println("List of Registries with the same $ amount of Stamps and same number of Labels: \n");
+        for (int i = 0 ; i < registries.length - 1; i++) {
+            for (int j = i + 1; j < registries.length; j++) {
+                if (registries[i].compareValueStamps(registries[j]) && registries[i].numberOfLabels() == registries[j].numberOfLabels()) {
+                    System.out.println("\t\tRegistries " + (i + 1) + " and " + (j + 1) + "\n");
+                }
+            }
+        }
+    }
     private static void addPrepaidLabel(Scanner input) {}
     private static void removePrepaidLabel(Scanner input) {}
     private static void updateExpiryDate(Scanner input) {}
