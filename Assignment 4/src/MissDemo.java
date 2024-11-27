@@ -156,7 +156,15 @@ public class MissDemo {
     }
 
     private static void displayRegistriesWithSameAmount() {
-        
+        System.out.println("List of Registries with the same total $ Stamps: \n");
+        for (int i = 0 ; i < registries.length - 1; i++) {
+            for (int j = i + 1; j < registries.length; j++) {
+                if (registries[i].compareValueStamps(registries[j])) {
+                    System.out.println("\t\tRegistries " + (i + 1) + " and " + (j + 1) + " both have $"+ 
+                    registries[i].shipmentStamps() +" of total stamps.\n");
+                }
+            }
+        }
     }
     private static void displayRegistriesWithSameNumberOfStamps() {}
     private static void displayRegistriesWithSameAmountAndNumberOfLabels() {}
