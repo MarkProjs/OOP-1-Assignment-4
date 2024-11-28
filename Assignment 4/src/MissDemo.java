@@ -140,7 +140,7 @@ public class MissDemo {
                 int registryIndex = input.nextInt();
                 if (registryIndex < 0 || registryIndex > 5) {
                     System.out.print("Sorry but there is no Registry number "+ registryIndex + ". Nice try though.\n" 
-                    +"--> Try again: (Enter number 0 to 4): ");
+                    +"--> Try again: (Enter number 1 to 5): ");
                     isValid = false;
                 } else {
                     System.out.println("Registry #" + registryIndex + ":");
@@ -213,8 +213,7 @@ public class MissDemo {
                     String[] date = expiryDate.split(" ");
                     int newLabelLength = registries[registryIndex - 1].addLabel(new Label(labelType, prepaidLabelId, 
                     Integer.parseInt(date[0]), Integer.parseInt(date[1])));
-                    System.out.println("You have add");
-                    System.out.println(" The total labels for registry " + registryIndex + " is now: " + newLabelLength);
+                    System.out.println(" The total labels for registry " + registryIndex + " is now: " + newLabelLength + "\n");
                     isValid = true;
                 }
             } catch (Exception e) {
@@ -224,7 +223,41 @@ public class MissDemo {
             }
         }
     }
-    private static void removePrepaidLabel(Scanner input) {}
+    private static void removePrepaidLabel(Scanner input) {
+        boolean isValid = false;
+        while (!isValid) {
+            try {
+                System.out.println("Which Registry do you want to remove a Label from? (Enter number 1 to 5): ");
+                int registryIndex = input.nextInt();
+                if (registryIndex < 0 || registryIndex > 5) {
+                    System.out.print("Sorry but there is no Registry number "+ registryIndex + ". Nice try though.\n" 
+                    +"--> Try again: (Enter number 1 to 5): ");
+                    isValid = false;
+                } else if(registries[registryIndex - 1].numberOfLabels() == 0) {
+                    System.out.println("There are no labels in Registry " + registryIndex);
+                    isValid = false;
+                } else {
+                    input.nextLine();
+                    System.out.println("There are " + registries[registryIndex - 1].numberOfLabels() + " in Registry " + registryIndex + ".\n");
+                    System.out.print("Which label are you removing)? ");
+                    int labelIndex = input.nextInt();
+                    if (!registries[registryIndex - 1].removeLabel(labelIndex - 1)) {
+                        System.out.println("There is no Label " + labelIndex + " in Registry " + registryIndex + ". Try again.\n");
+                        isValid = false;
+                    } else {
+                        System.out.println("The total labels for registry " + registryIndex + " is now: " + registries[registryIndex - 1].numberOfLabels() + "\n");
+                        isValid = true;
+                        
+                    }
+                    
+                }
+            } catch (Exception e) {
+                input.nextLine();
+                System.out.println("I AM LOSING PATIENCE! STOP CRASHING THE PROGRAM!\nCHOOSE BETWEEN THE NUMBERS!\n");
+                isValid = false;
+            }
+        }
+    }
     private static void updateExpiryDate(Scanner input) {}
     private static void addStamps(Scanner input) {}
 }

@@ -61,26 +61,16 @@ public class Registry {
     }
 
     //Remove a label
-    public boolean removeLabel(Label labelToRemove) {
-        if (this.labels.length == 0 || labelToRemove == null) {
-            return false; // No labels to remove or invalid input
-        }
-
-        int indexofLabelToRemove = -1;
-        for (int i = 0; i < this.labels.length; i++) {
-            if (this.labels[i].equals(labelToRemove)) {
-                indexofLabelToRemove = i;
-                break;
-            }
-        }
-        if (indexofLabelToRemove == -1) {
-            return false; // Label not found
+    public boolean removeLabel(int indexofLabelToRemove) {
+        if (indexofLabelToRemove < 0 || indexofLabelToRemove >= this.labels.length) {
+            return false;
         }
         Label[] updatedLabels = new Label[this.labels.length - 1];
-        for (int i = 0, j = 0; i < this.labels.length; i++) {
-            if (i != indexofLabelToRemove) {
-                updatedLabels[j++] = this.labels[i];
-            }
+        for(int i = 0; i < indexofLabelToRemove; i++) {
+            updatedLabels[i] = this.labels[i];
+        }
+        for(int i = indexofLabelToRemove; i < this.labels.length - 1; i++) {
+            updatedLabels[i] = this.labels[i + 1];
         }
         this.labels = updatedLabels;
         return true;

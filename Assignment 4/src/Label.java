@@ -76,7 +76,7 @@ public class Label {
     public String toString() {
         return "Type: " + this.type + "\n" +
         "ID: " + this.iD + "\n" +
-        "Expiry date: " + String.format("%02d", this.day)+"/"+String.format("%02d", this.month);
+        "Expiry date: " + String.format("%02d", this.day)+"/"+String.format("%02d", this.month) + "\n";
     }
     @Override
     public boolean equals(Object obj) {
