@@ -118,6 +118,7 @@ public class MissDemo {
             addStamps(input);
             return false;
         } else if (choice == 0) {
+            System.out.println("Thank you for using Montreal International Shipping Services (MISS) Application!");
             return true;
         } else {
             return false;
@@ -300,5 +301,34 @@ public class MissDemo {
             }
         }
     }
-    private static void addStamps(Scanner input) {}
+    private static void addStamps(Scanner input) {
+        boolean isValid = false;
+        while (!isValid) {
+            try {
+                System.out.println("Which Registry do you want to add Stamps to? (Enter number 1 to 5): ");
+                int registryIndex = input.nextInt();
+                if(registryIndex < 0 || registryIndex > 5) {
+                    System.out.println("Sorry but there is no Registry number "+ registryIndex + ". Nice try though.\n" 
+                    +"--> Try again:");
+                    isValid = false;
+                } else {
+                    input.nextLine();
+                    System.out.print("How many category_A($2), category_B($5), " +
+                    "category_C($10), category_D($15) and category_E($20) parcel stamps do you want to add?\n" +
+                    "Enter 5 numbers seperated by a space: ");
+                    String numberOfStamps = input.nextLine();
+                    String[] stamps = numberOfStamps.split(" ");
+                    registries[registryIndex - 1].addShipmentStamps(Integer.parseInt(stamps[0]), Integer.parseInt(stamps[1]), 
+                    Integer.parseInt(stamps[2]), Integer.parseInt(stamps[3]), Integer.parseInt(stamps[4]));
+                    System.out.println("You now have $" + registries[registryIndex - 1].shipmentStamps() +".0");
+                    isValid = true;
+                }
+            }catch (Exception e) {
+                input.nextLine();
+                System.out.println("THIS IS THE LAST OPTION AND YOU ARE STILL BREAKING THE PROGRAM?!" +
+                "GIVE IT UP ALREADY!\nCHOOSE BETWEEN THE NUMBERS!\n");
+                isValid = false;
+            }
+        }
+    }
 }
