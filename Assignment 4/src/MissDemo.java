@@ -140,7 +140,7 @@ public class MissDemo {
                 int registryIndex = input.nextInt();
                 if (registryIndex < 0 || registryIndex > 5) {
                     System.out.print("Sorry but there is no Registry number "+ registryIndex + ". Nice try though.\n" 
-                    +"--> Try again: (Enter number 1 to 5): ");
+                    +"--> Try again: ");
                     isValid = false;
                 } else {
                     System.out.println("Registry #" + registryIndex + ":");
@@ -183,7 +183,8 @@ public class MissDemo {
         System.out.println("List of Registries with the same $ amount of Stamps and same number of Labels: \n");
         for (int i = 0 ; i < registries.length - 1; i++) {
             for (int j = i + 1; j < registries.length; j++) {
-                if (registries[i].compareValueStamps(registries[j]) && registries[i].numberOfLabels() == registries[j].numberOfLabels()) {
+                if (registries[i].compareValueStamps(registries[j]) && 
+                registries[i].numberOfLabels() == registries[j].numberOfLabels()) {
                     System.out.println("\t\tRegistries " + (i + 1) + " and " + (j + 1) + "\n");
                 }
             }
@@ -198,7 +199,7 @@ public class MissDemo {
                 int registryIndex = input.nextInt();
                 if (registryIndex < 0 || registryIndex > 5) {
                     System.out.print("Sorry but there is no Registry number "+ registryIndex + ". Nice try though.\n" 
-                    +"--> Try again: (Enter number 1 to 5): ");
+                    +"--> Try again: ");
                     isValid = false;
                 } else {
                     System.out.print("Please enter the following information so that we may complete the Label -\n"
@@ -231,21 +232,23 @@ public class MissDemo {
                 int registryIndex = input.nextInt();
                 if (registryIndex < 0 || registryIndex > 5) {
                     System.out.print("Sorry but there is no Registry number "+ registryIndex + ". Nice try though.\n" 
-                    +"--> Try again: (Enter number 1 to 5): ");
+                    +"--> Try again: ");
                     isValid = false;
                 } else if(registries[registryIndex - 1].numberOfLabels() == 0) {
                     System.out.println("There are no labels in Registry " + registryIndex);
                     isValid = false;
                 } else {
                     input.nextLine();
-                    System.out.println("There are " + registries[registryIndex - 1].numberOfLabels() + " in Registry " + registryIndex + ".\n");
+                    System.out.println("There are " + registries[registryIndex - 1].numberOfLabels() + 
+                    " in Registry " + registryIndex + ".\n");
                     System.out.print("Which label are you removing)? ");
                     int labelIndex = input.nextInt();
                     if (!registries[registryIndex - 1].removeLabel(labelIndex - 1)) {
                         System.out.println("There is no Label " + labelIndex + " in Registry " + registryIndex + ". Try again.\n");
                         isValid = false;
                     } else {
-                        System.out.println("The total labels for registry " + registryIndex + " is now: " + registries[registryIndex - 1].numberOfLabels() + "\n");
+                        System.out.println("The total labels for registry " + registryIndex + " is now: " + 
+                        registries[registryIndex - 1].numberOfLabels() + "\n");
                         isValid = true;
                         
                     }
@@ -258,6 +261,44 @@ public class MissDemo {
             }
         }
     }
-    private static void updateExpiryDate(Scanner input) {}
+    private static void updateExpiryDate(Scanner input) {
+        boolean isValid = false;
+        while (!isValid) {
+            try {
+                System.out.println("Which Registry do you want to update a Label form? (Enter number 1 to 5): ");
+                int registryIndex = input.nextInt();
+                if(registryIndex < 0 || registryIndex > 5) {
+                    System.out.println("Sorry but there is no Registry number "+ registryIndex + ". Nice try though.\n" 
+                    +"--> Try again:");
+                    isValid = false;
+                } else if(registries[registryIndex - 1].numberOfLabels() == 0) {
+                    System.out.println("There are no labels in Registry " + registryIndex);
+                    isValid = false;
+                } else {
+                    input.nextLine();
+                    System.out.println("There are " + registries[registryIndex - 1].numberOfLabels() + " in Registry " + 
+                    registryIndex + ".\n");
+                    System.out.print("Which Label do you want to update? ");
+                    int labelIndex = input.nextInt();
+                    if( labelIndex > registries[registryIndex - 1].numberOfLabels() || labelIndex < 1) {
+                        System.out.println("There is no Label " + labelIndex + " in Registry " + registryIndex + ". Try again.\n");
+                        isValid = false;
+                    } else {
+                        input.nextLine();
+                        System.out.print("-->\tEnter new expiry date day number and month (seperate by a space): ");
+                        String expiryDate = input.nextLine();
+                        String[] date = expiryDate.split(" ");
+                        registries[registryIndex - 1].updateExpiryDate(labelIndex - 1, Integer.parseInt(date[0]), Integer.parseInt(date[1]));
+                        System.out.println("The Label's expiry date has been updated.\n");
+                        isValid = true;
+                    }
+                }
+            } catch (Exception e) {
+                input.nextLine();
+                System.out.println("STOP CRASHING THE PROGRAM! I AM TIRED OF TYPING THESE VALIDATIONS!\nCHOOSE BETWEEN THE NUMBERS!\n");
+                isValid = false;
+            }
+        }
+    }
     private static void addStamps(Scanner input) {}
 }

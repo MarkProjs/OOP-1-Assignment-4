@@ -77,14 +77,9 @@ public class Registry {
     }
 
     //Update the expiry date
-    public void updateExpiryDate(Label labelToUpdate, int newDay, int newMonth) {
-        for (int i = 0; i < this.labels.length; i++) {
-            if (this.labels[i].equals(labelToUpdate)) {
-                this.labels[i].setDay(newDay);
-                this.labels[i].setMonth(newMonth);
-                break;
-            }
-        }
+    public void updateExpiryDate(int indexofLabelToRemove, int newDay, int newMonth) {
+        this.labels[indexofLabelToRemove].setDay(newDay);
+        this.labels[indexofLabelToRemove].setMonth(newMonth);
     }
 
     //Add stamps
